@@ -6,7 +6,8 @@ set -e
 
 REPOSITORY_PATHS=(${1});
 COMMIT_AUTHOR=${2}
-SINCE=${3}:"4.days.ago"
+SINCE=${3:-"4.days.ago"}
+UPDATE_REPO=${4:-false}
 
 function getCommitsForAuthor() {
   REPOSITORY_PATH=$1
