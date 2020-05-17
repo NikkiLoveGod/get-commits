@@ -12,8 +12,9 @@ function getCommitsForAuthor() {
   REPOSITORY_PATH=$1
   AUTHOR=$2
 
+  cd "${REPOSITORY_PATH}" #&& git fetch --all > /dev/null
 
-  cd "${REPOSITORY_PATH}" && git log --pretty=format:"%ad <%an> %d %s" --date=format:'%Y-%m-%d %H:%M:%S' --all --since="${SINCE}" --author="${AUTHOR}"
+  git shortlog --all --since="${SINCE}" --pretty=format:"%ci %d %s" --reverse --date=format:"%H"
 }
 
 function printCommits() {
