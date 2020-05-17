@@ -13,7 +13,11 @@ function getCommitsForAuthor() {
   REPOSITORY_PATH=$1
   AUTHOR=$2
 
-  cd "${REPOSITORY_PATH}" #&& git fetch --all > /dev/null
+  cd "${REPOSITORY_PATH}"
+
+  if [ "${UPDATE_REPO}" == "true" ] ; then
+    git fetch --all > /dev/null
+  fi
 
   git shortlog --all --since="${SINCE}" --pretty=format:"%ai %d %s" --reverse --date=format:"%H" --author="${AUTHOR}"
 }
