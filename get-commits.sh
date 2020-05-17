@@ -5,7 +5,7 @@ set -e
 # Get all commits accross all repositories and branches, sorted on time
 
 REPOSITORY_PATHS=("/Users/nlg/dev/commitfinder" "/Users/nlg/dev/kouts" "/Users/nlg/dev/simulator" "/Users/nlg/dev/tractr_app");
-AUTHOR_UNDER_LENS="sami.kurvinen@gmail.com"
+AUTHOR_UNDER_LENS=${1}
 SINCE="4.days.ago"
 
 function getCommitsForAuthor() {
@@ -14,7 +14,11 @@ function getCommitsForAuthor() {
 
   cd "${REPOSITORY_PATH}" #&& git fetch --all > /dev/null
 
-  git shortlog --all --since="${SINCE}" --pretty=format:"%ci %d %s" --reverse --date=format:"%H"
+  if [ "${AUTHOR}" != "" ] ; then
+    git log --pretty=format:"%ai <%an> %d %s" --all --since="${SINCE}" --author="${AUTHOR}"
+  else
+    git shortlog --all --since="${SINCE}" --pretty=format:"%ai %d %s" --reverse --date=format:"%H"
+  fi
 }
 
 function printCommits() {
