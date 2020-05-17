@@ -2,11 +2,11 @@
 
 set -e
 
-# Get all commits accross all repositories and branches, sorted on time
+# Get all commits across all repositories and branches, sorted on time
 
-REPOSITORY_PATHS=("/Users/nlg/dev/commitfinder" "/Users/nlg/dev/kouts" "/Users/nlg/dev/simulator" "/Users/nlg/dev/tractr_app");
-AUTHOR_UNDER_LENS=${1}
-SINCE="4.days.ago"
+REPOSITORY_PATHS=(${1});
+COMMIT_AUTHOR=${2}
+SINCE=${3}:"4.days.ago"
 
 function getCommitsForAuthor() {
   REPOSITORY_PATH=$1
@@ -23,6 +23,6 @@ function printCommits() {
 }
 
 for repositoryPath in "${REPOSITORY_PATHS[@]}"; do
-  COMMITS=$(getCommitsForAuthor "${repositoryPath}" "${AUTHOR_UNDER_LENS}")
+  COMMITS=$(getCommitsForAuthor "${repositoryPath}" "${COMMIT_AUTHOR}")
   printCommits "${repositoryPath}" "${COMMITS}"
 done
