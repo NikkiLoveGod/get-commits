@@ -9,7 +9,7 @@ It's meant to answer the question "What did I do two days ago?" based on Git com
 ## Installation
 
 * Clone this repo into somewhere in your filesystem.
-* Optionally copy the `git-commits.sh` script somewhere under your $PATHS, fe. `cp git-commits.sh /usr/local/bin/get-commits`
+* Optionally symlink the `git-commits.sh` script somewhere under your $PATHS, fe. `ln -s <path>/get-commits.sh /usr/local/bin/get-commits`
 
 ## Usage
 ```bash
