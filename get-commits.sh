@@ -14,11 +14,7 @@ function getCommitsForAuthor() {
 
   cd "${REPOSITORY_PATH}" #&& git fetch --all > /dev/null
 
-  if [ "${AUTHOR}" != "" ] ; then
-    git log --pretty=format:"%ai <%an> %d %s" --all --since="${SINCE}" --author="${AUTHOR}"
-  else
-    git shortlog --all --since="${SINCE}" --pretty=format:"%ai %d %s" --reverse --date=format:"%H"
-  fi
+  git shortlog --all --since="${SINCE}" --pretty=format:"%ai %d %s" --reverse --date=format:"%H" --author="${AUTHOR}"
 }
 
 function printCommits() {
