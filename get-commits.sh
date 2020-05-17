@@ -27,17 +27,15 @@ function getCommitsInRepo() {
   local REPOSITORY_PATH=$1
   local AUTHOR=$2
 
-  cd "${REPOSITORY_PATH}" && git shortlog --all --since="${SINCE}" --pretty=format:"%ai %d %s" --reverse --date=format:"%H" --author="${AUTHOR}"
+  (cd "${REPOSITORY_PATH}" && git shortlog --all --since="${SINCE}" --pretty=format:"%ai %d %s" --reverse --date=format:"%H" --author="${AUTHOR}")
 }
 
 function updateRepo() {
-  cd ${1}
+  local REPO_PATH="${1}"
 
   if [ "${UPDATE_REPOS}" == "true" ] ; then
-    git fetch --all > /dev/null
+    (cd "${REPO_PATH}" && git fetch --all > /dev/null)
   fi
-
-  cd ..
 }
 
 function printAllCommitsInAllRepos() {
