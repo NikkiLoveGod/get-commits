@@ -11,11 +11,17 @@ SINCE="4.days.ago"
 function getCommitsForAuthor() {
   REPOSITORY_PATH=$1
   AUTHOR=$2
-  printf "## ${REPOSITORY_PATH}: \n\n"
-  cd "${REPOSITORY_PATH}" && git log --pretty=format:"%ad <%an> %d %s" --date=format:'%Y-%m-%d %H:%M:%S' --all --since="${SINCE}" --author="${AUTHOR}" 
-  echo ""
+
+
+  cd "${REPOSITORY_PATH}" && git log --pretty=format:"%ad <%an> %d %s" --date=format:'%Y-%m-%d %H:%M:%S' --all --since="${SINCE}" --author="${AUTHOR}"
+}
+
+function printCommits() {
+  printf "\n## ${1}: \n\n"
+  printf "${2}\n"
 }
 
 for repositoryPath in "${REPOSITORY_PATHS[@]}"; do
-  getCommitsForAuthor "${repositoryPath}" "${AUTHOR_UNDER_LENS}"
+  COMMITS=$(getCommitsForAuthor "${repositoryPath}" "${AUTHOR_UNDER_LENS}")
+  printCommits "${repositoryPath}" "${COMMITS}"
 done
