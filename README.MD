@@ -4,6 +4,8 @@ A simple bash script that goes through your Git repositories and prints out the 
 
 It's meant to answer the question "What did I do two days ago?" based on Git commits.
 
+*TL;DR* - Runs `git shortlog` in multiple repos.
+
 ## Installation
 
 * Clone this repo into somewhere in your filesystem.
@@ -24,7 +26,7 @@ Example: ./get-commits -a me@domain.com -p "/usr/repos/my-project /usr/repos/my-
 
 ```
 
-## Output
+## Example output
 ```bash
 $ ./get-commits.sh -p /Users/nlg/dev/commitfinder                                                                             [10:42:23]
 
